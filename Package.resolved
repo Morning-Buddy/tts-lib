@@ -4,9 +4,9 @@
     {
       "identity" : "misakiswift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mlalma/MisakiSwift",
+      "location" : "https://github.com/Morning-Buddy/MisakiSwift",
       "state" : {
-        "revision" : "6835a1ce4a8854075c89f18ff75c74b13ef58e15",
+        "revision" : "4cc29969680747e48056d06c71c13c0a30d34776",
         "version" : "1.0.6"
       }
     },
