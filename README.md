@@ -24,7 +24,7 @@ Add KokoroSwift to your project using Swift Package Manager:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/mlalma/kokoro-ios.git", from: "1.0.0")
+    .package(url: "https://github.com/Morning-Buddy/tts-lib", from: "1.0.12")
 ]
 ```
 
@@ -34,15 +34,19 @@ Then add it to your target:
 .target(
     name: "YourTarget",
     dependencies: [
-        .product(name: "KokoroSwift", package: "kokoro-ios")
+        .product(name: "KokoroSwift", package: "tts-lib"),
+        .product(name: "MLXUtilsLibrary", package: "tts-lib")  // Required for linking
     ]
 )
 ```
+
+Note: Both KokoroSwift and MLXUtilsLibrary must be added to your target dependencies to avoid linker errors.
 
 ## Usage
 
 ```swift
 import KokoroSwift
+import MLXUtilsLibrary  // Required import
 
 // Initialize the TTS engine
 let modelPath = URL(fileURLWithPath: "path/to/your/model")
@@ -51,9 +55,10 @@ let tts = KokoroTTS(modelPath: modelPath, g2p: .misaki)
 // Generate speech
 let voiceEmbedding = ... // See KokoroTestApp on how to get a voice style as an `MLXArray`
 let text = "Hello, this is a test of Kokoro TTS."
-let audioBuffer = try tts.generateAudio(voice: voiceEmbedding, language: .enUS, text: text)
+let (audioBuffer, tokens) = try tts.generateAudio(voice: voiceEmbedding, language: .enUS, text: text)
 
-// audioBuffer now contains the synthesized speech
+// audioBuffer now contains the synthesized speech as [Float]
+// tokens contains optional timestamp information for each token
 ```
 
 ## G2P (Grapheme-to-Phoneme) Options

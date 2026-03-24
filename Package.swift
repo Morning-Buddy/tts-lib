@@ -14,6 +14,11 @@ let package = Package(
       type: .dynamic,
       targets: ["KokoroSwift"]
     ),
+    // Re-export MLXUtilsLibrary so consuming apps can link against it
+    .library(
+      name: "MLXUtilsLibrary",
+      targets: ["MLXUtilsLibraryWrapper"]
+    ),
   ],
   dependencies: [
     .package(url: "https://github.com/ml-explore/mlx-swift", exact: "0.30.6"),
@@ -35,6 +40,13 @@ let package = Package(
       ],
       resources: [
        .copy("../../Resources/")
+      ]
+    ),
+    // Wrapper target to re-export MLXUtilsLibrary
+    .target(
+      name: "MLXUtilsLibraryWrapper",
+      dependencies: [
+        .product(name: "MLXUtilsLibrary", package: "MLXUtilsLibrary")
       ]
     ),
     .testTarget(
