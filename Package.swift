@@ -23,7 +23,7 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/ml-explore/mlx-swift", exact: "0.30.6"),
     // .package(url: "https://github.com/mlalma/eSpeakNGSwift", from: "1.0.1"),
-    .package(url: "https://github.com/Morning-Buddy/MisakiSwift", exact: "1.0.6"),
+    .package(url: "https://github.com/Morning-Buddy/MisakiSwift", exact: "1.0.7"),
     .package(url: "https://github.com/mlalma/MLXUtilsLibrary.git", exact: "0.0.6")
   ],
   targets: [
@@ -39,7 +39,7 @@ let package = Package(
         .product(name: "MLXUtilsLibrary", package: "MLXUtilsLibrary")
       ],
       resources: [
-       .copy("../../Resources/")
+       .copy("../../Assets/")
       ]
     ),
     // Wrapper target to re-export MLXUtilsLibrary
